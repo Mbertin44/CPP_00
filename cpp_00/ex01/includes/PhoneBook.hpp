@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   phonebook.hpp                                      :+:      :+:    :+:   */
+/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbertin <mbertin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 09:05:27 by mbertin           #+#    #+#             */
-/*   Updated: 2023/04/18 16:09:06 by mbertin          ###   ########.fr       */
+/*   Updated: 2023/04/24 10:34:56 by mbertin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,16 @@ class PhoneBook
 	public:
 		PhoneBook();
 		~PhoneBook();
-		void	runPhoneBook();
-		void	addContact();
-		void	newFirstName();
-		void	newLastName();
-		void	newNickname();
-		void	newPhoneNumber();
-		void	newSecret();
+		void		runPhoneBook();
+		void		addContact();
+		void		newFirstName();
+		void		newLastName();
+		void		newNickname();
+		void		newPhoneNumber();
+		void		newSecret();
+		void		search();
+		void		displaySearch();
+		std::string	setShortName(std::string name);
 	private:
 		Contact _contact[8];
 		int		_index;

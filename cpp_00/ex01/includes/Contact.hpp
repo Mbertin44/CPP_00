@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   contact.hpp                                        :+:      :+:    :+:   */
+/*   Contact.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbertin <mbertin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 09:05:25 by mbertin           #+#    #+#             */
-/*   Updated: 2023/04/18 13:22:00 by mbertin          ###   ########.fr       */
+/*   Updated: 2023/04/20 13:36:18 by mbertin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,23 @@
 #include <iomanip>
 #include <iostream>
 
+#define BLUE_CL "\033[1;36m"
+#define WHITE_CL "\033[0;37m"
+#define RED_CL "\033[0;31m"
+#define YELLOW_CL "\033[0;33m"
+#define PINK_CL "\033[38;2;255;192;203m"
+#define GREEN_CL "\033[0;32m"
+
 class Contact
 {
 	public:
 		Contact();
 		~Contact();
-		std::string get_name() const;
-		std::string get_lastName() const;
-		std::string get_nickname() const;
-		std::string get_phoneNumber() const;
-		std::string get_darkestSecret() const;
+		const std::string &get_name() const;
+		const std::string &get_lastName() const;
+		const std::string &get_nickname() const;
+		const std::string &get_phoneNumber() const;
+		const std::string &get_darkestSecret() const;
 		void		set_name(std::string name);
 		void		set_lastName(std::string lastName);
 		void		set_nickname(std::string nickname);
