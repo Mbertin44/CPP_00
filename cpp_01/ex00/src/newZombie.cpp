@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   newZombie.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbertin <mbertin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/24 13:24:34 by mbertin           #+#    #+#             */
-/*   Updated: 2023/04/25 10:07:50 by mbertin          ###   ########.fr       */
+/*   Created: 2023/04/25 09:22:08 by mbertin           #+#    #+#             */
+/*   Updated: 2023/04/25 09:39:14 by mbertin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Zombie.hpp"
 
-int main()
+Zombie* newZombie(std::string name)
 {
-	Zombie *alpha = newZombie("alpha");
-	alpha->announce();
-	randomChump("random");
-	alpha->~Zombie();
-	return 0;
+	Zombie* newZombie;
+	newZombie = new Zombie(name);
+	return (newZombie);
 }

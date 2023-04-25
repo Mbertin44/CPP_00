@@ -6,7 +6,7 @@
 #    By: mbertin <mbertin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/11 13:47:48 by mbertin           #+#    #+#              #
-#    Updated: 2023/04/24 13:10:27 by mbertin          ###   ########.fr        #
+#    Updated: 2023/04/25 10:04:36 by mbertin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,13 +27,14 @@ RM = rm -rf
 #------------------------------------------------------------------------------#
 #									SOURCES									   #
 #------------------------------------------------------------------------------#
-HEADER =	includes/Zombie.hpp \
+HEADER =	includes/Zombie.hpp
 D_SRC = src/
 D_OBJ = obj/
 OBJS = $(patsubst $(D_SRC)%.cpp,$(D_OBJ)%.o,$(SRCS))
-SRCS =	src/Zombie.cpp \
+SRCS =	src/main.cpp \
 		src/newZombie.cpp \
 		src/randomChump.cpp \
+		src/Zombie.cpp
 
 #------------------------------------------------------------------------------#
 #									 RULES									   #
@@ -47,8 +48,7 @@ $(NAME):	$(D_OBJ) $(OBJS)
 $(D_OBJ):
 	@mkdir -p $(D_OBJ)
 
-# $(OBJS): $(D_OBJ)%.o : $(D_SRC)%.c $(HEADER)
-$(OBJS): $(D_OBJ)%.o : $(D_SRC)%.cpp
+$(OBJS): $(D_OBJ)%.o : $(D_SRC)%.cpp $(HEADER)
 		@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
