@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Weapon.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbertin <mbertin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/24 13:24:34 by mbertin           #+#    #+#             */
-/*   Updated: 2023/04/25 10:13:09 by mbertin          ###   ########.fr       */
+/*   Created: 2023/04/25 14:03:58 by mbertin           #+#    #+#             */
+/*   Updated: 2023/04/25 14:36:34 by mbertin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Zombie.hpp"
+#include <string>
+#include <iostream>
+#include <iomanip>
 
-int main()
+class Weapon
 {
-	Zombie *alpha = newZombie("alpha");
-	alpha->announce();
-	randomChump("random");
-	delete alpha;
-	return 0;
-}
+	public:
+		Weapon();
+		~Weapon();
+		std::string const	&getType() const;
+		void				setType(std::string type);
+	private:
+		std::string _type;
+};
