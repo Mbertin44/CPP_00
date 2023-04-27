@@ -6,7 +6,7 @@
 /*   By: mbertin <mbertin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 14:36:37 by mbertin           #+#    #+#             */
-/*   Updated: 2023/04/25 14:37:09 by mbertin          ###   ########.fr       */
+/*   Updated: 2023/04/26 10:51:34 by mbertin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 
 Weapon::Weapon()
 {
+	return;
+}
+
+Weapon::Weapon(std::string type)
+{
+	_type = type;
 	return;
 }
 
