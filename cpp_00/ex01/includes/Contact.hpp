@@ -6,7 +6,7 @@
 /*   By: mbertin <mbertin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 09:05:25 by mbertin           #+#    #+#             */
-/*   Updated: 2023/04/24 13:33:08 by mbertin          ###   ########.fr       */
+/*   Updated: 2023/05/02 10:16:24 by mbertin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ class Contact
 		void		set_phoneNumber(std::string phoneNumber);
 		void		set_darkestSecret(std::string darkestSecret);
 	private:
-		std::string const _name;
-		std::string const _lastName;
-		std::string const _nickname;
-		std::string const _phoneNumber;
-		std::string const _darkestSecret;
+		std::string _name;
+		std::string _lastName;
+		std::string _nickname;
+		std::string _phoneNumber;
+		std::string _darkestSecret;
 };

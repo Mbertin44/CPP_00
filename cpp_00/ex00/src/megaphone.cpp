@@ -6,7 +6,7 @@
 /*   By: mbertin <mbertin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 13:39:37 by mbertin           #+#    #+#             */
-/*   Updated: 2023/04/18 11:10:16 by mbertin          ###   ########.fr       */
+/*   Updated: 2023/05/04 09:24:35 by mbertin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,12 @@ int	main(int argc, char **argv)
 	while (argv[i])
 	{
 		j = 0;
-		while (argv[i][j])
+		std::string arg = argv[i];
+		while (arg[j])
 		{
-			if (argv[i][j] >= 97 && argv[i][j] <= 123)
-				argv[i][j] -= 32;
-			std::cout << argv[i][j];
+			if (arg[j] >= 97 && arg[j] <= 123)
+				arg[j] -= 32;
+			std::cout << arg[j];
 			j++;
 		}
 		i++;

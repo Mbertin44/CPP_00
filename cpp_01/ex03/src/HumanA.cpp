@@ -6,7 +6,7 @@
 /*   By: mbertin <mbertin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 09:15:00 by mbertin           #+#    #+#             */
-/*   Updated: 2023/04/26 13:24:53 by mbertin          ###   ########.fr       */
+/*   Updated: 2023/05/05 09:07:46 by mbertin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ HumanA::~HumanA()
 	return;
 }
 
-const Weapon&	HumanA::getWeapon() const
+const Weapon	&HumanA::getWeapon() const
 {
 	return (_weapon);
 }

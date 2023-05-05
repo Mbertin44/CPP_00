@@ -1,34 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanA.hpp                                         :+:      :+:    :+:   */
+/*   Fixed.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbertin <mbertin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/25 14:36:11 by mbertin           #+#    #+#             */
-/*   Updated: 2023/05/05 09:07:35 by mbertin          ###   ########.fr       */
+/*   Created: 2023/04/28 09:29:58 by mbertin           #+#    #+#             */
+/*   Updated: 2023/05/05 11:13:07 by mbertin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#ifndef HUMANA_HPP
-# define HUMANA_HPP
 
 #include <string>
 #include <iostream>
 #include <iomanip>
-#include "Weapon.hpp"
+#include <iostream>
+#include <cmath>
 
-class HumanA
+class Fixed
 {
 	public:
-		HumanA(std::string name, Weapon &weapon);
-		~HumanA();
-		void				attack();
-		const Weapon		&getWeapon() const;
-		void				setWeapon(Weapon weapon);
+		Fixed();
+		Fixed(const int value);
+		Fixed(const float value);
+		Fixed(const Fixed& source);
+		~Fixed();
+		Fixed& operator=(const Fixed& rhs);
+		float toFloat( void ) const;
+		int toInt( void ) const;
+		int getRawBits(void) const;
+		void setRawBits(int const raw);
 	private:
-		std::string _name;
-		Weapon &_weapon;
+		int	_RawBits;
+		static const int _Bits = 8;
 };
 
-#endif
+std::ostream& operator<<(std::ostream& out_straeam, const Fixed &fixe);

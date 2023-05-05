@@ -6,7 +6,7 @@
 /*   By: mbertin <mbertin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 08:47:08 by mbertin           #+#    #+#             */
-/*   Updated: 2023/04/26 15:31:22 by mbertin          ###   ########.fr       */
+/*   Updated: 2023/05/05 09:10:32 by mbertin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ class HumanB
 	public:
 		HumanB(std::string name);
 		~HumanB();
-		void	attack();
-		Weapon const		getWeapon();
+		void				attack();
+		const Weapon		&getWeapon();
 		void				setWeapon(Weapon &weapon);
 	private:
 		std::string _name;

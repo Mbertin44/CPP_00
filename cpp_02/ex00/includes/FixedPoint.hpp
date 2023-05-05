@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   zombieHorde.cpp                                    :+:      :+:    :+:   */
+/*   Fixed.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbertin <mbertin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/25 10:15:47 by mbertin           #+#    #+#             */
-/*   Updated: 2023/05/04 16:24:12 by mbertin          ###   ########.fr       */
+/*   Created: 2023/04/28 09:29:58 by mbertin           #+#    #+#             */
+/*   Updated: 2023/05/03 13:50:13 by mbertin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Zombie.hpp"
+#include <string>
+#include <iostream>
+#include <iomanip>
 
-Zombie* zombieHorde(int N, std::string name)
+class Fixed
 {
-	Zombie* zombies = new Zombie[N];
-	for (int i = 0; i < N; i++)
-	{
-		zombies[i].set_name(name);
-		zombies[i].announce();
-	}
-	return (zombies);
-}
+	public:
+		Fixed();
+		Fixed(const Fixed& source);
+		~Fixed();
+		Fixed& operator=(const Fixed& rhs);
+		int getRawBits(void) const;
+		void setRawBits(int const raw);
+	private:
+		int	_RawBits;
+		static const int _Bits = 8;
+};

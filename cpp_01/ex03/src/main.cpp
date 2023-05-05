@@ -6,7 +6,7 @@
 /*   By: mbertin <mbertin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 13:24:34 by mbertin           #+#    #+#             */
-/*   Updated: 2023/04/27 08:39:59 by mbertin          ###   ########.fr       */
+/*   Updated: 2023/05/05 09:15:13 by mbertin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,10 @@ int main()
 	{
 		Weapon club = Weapon("crude spiked club");
 		HumanB jim("Jim");
-		jim.attack();
-		jim.setWeapon(club);
-		jim.attack();
+		jim.attack(); // Jim peut attaquer sans arme
+		jim.setWeapon(club); // J'assigne une arme a Jim
+		jim.attack(); // Jim attaque avec une arme
+		jim.setWeapon(club); // J'assigne une arme a Jim
 		club.setType("some other type of club");
 		jim.attack();
 	}
