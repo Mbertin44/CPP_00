@@ -1,19 +1,19 @@
-#include "../includes/FragTrap.hpp"
+#include "../includes/ScavTrap.hpp"
 
-FragTrap::FragTrap(std::string name) : ClapTrap(name)
+ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 {
-	std::cout << "FragTrap constructor called" << std::endl;
+	std::cout << "ScavTrap constructor called" << std::endl;
 	this->_hit_points = 100;
-	this->_energy_points = 100;
-	this->_attack_damage = 30;
+	this->_energy_points = 50;
+	this->_attack_damage = 20;
 }
 
-FragTrap::~FragTrap()
+ScavTrap::~ScavTrap()
 {
-	std::cout << "FragTrap destructor called" << std::endl;
+	std::cout << "ScavTrap destructor called" << std::endl;
 }
 
-void FragTrap::attack(const std::string& target)
+void ScavTrap::attack(const std::string& target)
 {
 	if (this->_energy_points == 0)
 	{
@@ -24,7 +24,7 @@ void FragTrap::attack(const std::string& target)
 	this->_energy_points -= 1;
 }
 
-void FragTrap::highFivesGuys() const
+void ScavTrap::guardGate()
 {
-	std::cout << PINK_CL "COME ON GUYS GIVE A HIGH FIVE TO A SWEAT FRAGTRAP" WHITE_CL << std::endl << std::endl;
+	std::cout << PINK_CL "ScavTrap is now in Gate keeper mode" WHITE_CL << std::endl << std::endl;
 }

@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbertin <mbertin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/03 14:01:38 by mbertin           #+#    #+#             */
-/*   Updated: 2023/05/10 09:13:15 by mbertin          ###   ########.fr       */
+/*   Created: 2023/05/10 14:25:09 by mbertin           #+#    #+#             */
+/*   Updated: 2023/05/11 11:49:54 by mbertin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Fixed.hpp"
+#ifndef CAT_HPP
+# define CAT_HPP
 
-int main()
+#include "Animal.hpp"
+
+class Cat : public Animal
 {
-	Fixed a;
-	Fixed b( a );
-	Fixed c;
-	c = b;
-	std::cout << a.getRawBits() << std::endl;
-	std::cout << b.getRawBits() << std::endl;
-	std::cout << c.getRawBits() << std::endl;
-	return 0;
-}
+	public:
+		Cat();
+		Cat(const Cat &src);
+		~Cat();
+		Cat &operator=(const Cat &src);
+		// const std::string &getType () const;
+		void makeSound() const;
+};
+
+#endif // CAT_HPP

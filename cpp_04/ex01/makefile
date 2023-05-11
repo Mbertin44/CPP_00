@@ -6,14 +6,14 @@
 #    By: mbertin <mbertin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/11 13:47:48 by mbertin           #+#    #+#              #
-#    Updated: 2023/05/09 14:01:43 by mbertin          ###   ########.fr        #
+#    Updated: 2023/05/11 14:20:46 by mbertin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #------------------------------------------------------------------------------#
 #								   GENERAL									   #
 #------------------------------------------------------------------------------#
-NAME = FragTrap
+NAME = Animal
 
 CC = c++
 CFLAGS = -g -Wall -Werror -Wextra -std=c++98
@@ -27,16 +27,18 @@ RM = rm -rf
 #------------------------------------------------------------------------------#
 #									SOURCES									   #
 #------------------------------------------------------------------------------#
-HEADER =	includes/ClapTrap.hpp \
-			includes/ScavTrap.hpp \
-			includes/FragTrap.hpp
+HEADER =	includes/Animal.hpp \
+			includes/Cat.hpp \
+			includes/Dog.hpp
 D_SRC = src/
 D_OBJ = obj/
 OBJS = $(patsubst $(D_SRC)%.cpp,$(D_OBJ)%.o,$(SRCS))
 SRCS =	src/main.cpp \
-		src/ClapTrap.cpp \
-		src/ScavTrap.cpp \
-		src/FragTrap.cpp
+		src/Animal.cpp \
+		src/Cat.cpp \
+		src/Dog.cpp \
+		src/WrongAnimal.cpp \
+		src/WrongCat.cpp \
 
 #------------------------------------------------------------------------------#
 #									 RULES									   #

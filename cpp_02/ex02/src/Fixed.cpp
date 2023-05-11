@@ -29,7 +29,7 @@ Fixed::~Fixed()
 Fixed::Fixed(const Fixed& source)
 {
 	// std::cout << "Copy constructor called" << std::endl;
-	this->_RawBits = source.getRawBits();
+	*this = source;
 }
 
  /*
@@ -50,15 +50,35 @@ Fixed::Fixed(const int value)
 	A la place je fais un decalage de 8 bits sur la valeur 1 (qui va donner 100 000 000 en binanire qui lui est égal a 256). A partir de la je multiplie mon float par 256 et j'aurais le bon resultat en virgule fixe.
 
 	Pourquoi faire le decalage sur 1 ?
-	Je veux avoir la representation reel de mon 8 bits (qui est binaire) en décimal. Le fait de décaler la valeur decimal 1 de 8 bits va me donner la valeur decimal de mon chiffre binaire 8 : 256
+	Je veux avoir la representation reel de mon 8 bits (qui est binaire) en décimal. Le fait
+	de décaler la valeur decimal 1 de 8 bits va me donner la valeur decimal de mon chiffre binaire 8 : 256
 
 	Pourquoi quand j'utilise roundf je passe de 42.418 a 42.4219?
-	En réalité on pourrait croire que je finis avec une plus grande valeur decimal alors que non. 42.418 est une precision limite en realite c'est peut etre 42.41899797... Donc quand je passe de 42.4219 c'est peut être 42.42196546... Ce qui est important de retenir c'est que j'ai toujours trois chiffres apres la virgule. Donc je suis passé de 42.418 à 42.421. Pour être encore plus(moins) précis je suis passé de 42.418 à 42.42, donc l'arrondi de la valeur decimal 42.418. Le fait que l'arrondi donne un nombre avec plus de chiffres que l'original peut sembler contre-intuitif, mais cela est dû à la représentation binaire des nombres à virgule flottante. La précision limitée de cette représentation peut entraîner des erreurs d'arrondi qui conduisent à des résultats inattendus.
+	En réalité on pourrait croire que je finis avec une plus grande valeur decimal alors que non.
+	42.418 est une precision limite en realite c'est peut etre 42.41899797... Donc quand je passe
+	de 42.4219 c'est peut être 42.42196546... Ce qui est important de retenir c'est que j'ai toujours
+	trois chiffres apres la virgule. Donc je suis passé de 42.418 à 42.421. Pour être encore plus (moins)
+	précis je suis passé de 42.418 à 42.42, donc l'arrondi de la valeur decimal 42.418. Le fait que
+	l'arrondi donne un nombre avec plus de chiffres que l'original peut sembler contre-intuitif, mais
+	cela est dû à la représentation binaire des nombres à virgule flottante. La précision limitée de
+	cette représentation peut entraîner des erreurs d'arrondi qui conduisent à des résultats inattendus.
 */
 Fixed::Fixed(const float value)
 {
 	// std::cout << "Float constructor called" << std::endl;
 	_RawBits = roundf(value * (1 << _Bits)); //256
+}
+
+// -------------------------------- SET ET GET --------------------------------
+
+int Fixed::getRawBits(void) const
+{
+	return (this->_RawBits);
+}
+
+void Fixed::setRawBits(int const raw)
+{
+	this->_RawBits = raw;
 }
 
 // -------------------- CONVERTISSEUR --------------------
@@ -166,16 +186,29 @@ Fixed Fixed::operator--(int)
 	return (temp);
 }
 
-int Fixed::getRawBits(void) const
+// ----------------------------- SURCHARGE MIN MAX -----------------------------
+
+Fixed Fixed::max(Fixed &a, Fixed &b)
 {
-	return (this->_RawBits);
+	return (a > b) ? a : b;
 }
 
-void Fixed::setRawBits(int const raw)
+Fixed Fixed::max(const Fixed &a, const Fixed &b)
 {
-	this->_RawBits = raw;
+	return (a > b) ? a : b;
 }
 
+Fixed Fixed::min(Fixed &a, Fixed &b)
+{
+	return (a < b) ? a : b;
+}
+
+Fixed Fixed::min(const Fixed &a, const Fixed &b)
+{
+	return (a < b) ? a : b;
+}
+
+// ------------------------- SURCHARGE SORTIE STANDART -------------------------
 std::ostream& operator<<(std::ostream& out_stream, const Fixed &fixe)
 {
 	return (out_stream << fixe.toFloat());
