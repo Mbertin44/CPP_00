@@ -16,19 +16,17 @@ Brain::Brain(Brain &src)
 	*this = src;
 }
 
-std::string Brain::getType () const
-{
-	return (this->_type);
-}
-
-Brain &Brain::operator=(const Brain &rhs)
+Brain &Brain::operator=(Brain &rhs)
 {
 	if(this != &rhs)
-		this->_type = rhs._type;
+	{
+		for (size_t i = 0; i < 100; ++i)
+			this->_ideas[i] = rhs._ideas[i];
+	}
 	return (*this);
 }
 
-void Brain::makeSound() const
+void Brain::blabla()
 {
-	std::cout << CYAN_C "Brain make a weird sound ..." WHITE_C << std::endl;
+	std::cout << "coco" << std::endl;
 }

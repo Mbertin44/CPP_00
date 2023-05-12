@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mbertin <mbertin@student.42.fr>            +#+  +:+       +#+         #
+#    By: admin <admin@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/11 13:47:48 by mbertin           #+#    #+#              #
-#    Updated: 2023/05/11 14:20:46 by mbertin          ###   ########.fr        #
+#    Updated: 2023/05/11 23:03:49 by admin            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ SRCS =	src/main.cpp \
 		src/Dog.cpp \
 		src/WrongAnimal.cpp \
 		src/WrongCat.cpp \
+		src/Brain.cpp
 
 #------------------------------------------------------------------------------#
 #									 RULES									   #

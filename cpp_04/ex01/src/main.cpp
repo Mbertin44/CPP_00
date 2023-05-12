@@ -3,19 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbertin <mbertin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: admin <admin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 14:01:38 by mbertin           #+#    #+#             */
-/*   Updated: 2023/05/11 15:38:54 by mbertin          ###   ########.fr       */
+/*   Updated: 2023/05/11 23:06:13 by admin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Cat.hpp"
 #include "../includes/Dog.hpp"
 #include "../includes/WrongCat.hpp"
+#include "../includes/Brain.hpp"
 
 int main()
 {
+	Brain* test = new Brain();
+	test->blabla();
 	const Animal* meta = new Animal();
 	const Animal* dog = new Dog();
 	const Animal* cat = new Cat();
