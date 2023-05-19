@@ -30,6 +30,7 @@ void					RobotomyRequestForm::execute(const Bureaucrat &executor)
 		throw GradeTooLowException();
 	else
 	{
+		srand(time(NULL));
 		if (rand() % 2 == 0)
 		{
 			system("afplay perceuse.mp3");

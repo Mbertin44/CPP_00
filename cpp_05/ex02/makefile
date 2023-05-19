@@ -6,7 +6,7 @@
 #    By: mbertin <mbertin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/11 13:47:48 by mbertin           #+#    #+#              #
-#    Updated: 2023/05/19 14:07:24 by mbertin          ###   ########.fr        #
+#    Updated: 2023/05/19 14:39:33 by mbertin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,8 @@ SRCS =	src/main.cpp \
 		src/Bureaucrat.cpp \
 		src/AForm.cpp \
 		src/ShrubberyCreationForm.cpp \
-		src/RobotomyRequestForm.cpp
+		src/RobotomyRequestForm.cpp \
+		src/PresidentialPardonForm.cpp
 
 #------------------------------------------------------------------------------#
 #									 RULES									   #
