@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   WrongAnimal.hpp                                    :+:      :+:    :+:   */
+/*   AAnimal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbertin <mbertin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/11 12:08:42 by mbertin           #+#    #+#             */
-/*   Updated: 2023/05/15 11:19:57 by mbertin          ###   ########.fr       */
+/*   Created: 2023/05/10 11:03:16 by mbertin           #+#    #+#             */
+/*   Updated: 2023/05/15 09:18:59 by mbertin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WRONGANIMAL_HPP
-# define WRONGANIMAL_HPP
+#ifndef AAnimal_HPP
+# define AAnimal_HPP
 
 #include <string>
 #include <iostream>
@@ -32,24 +32,17 @@
 #define LIGHT_CYAN_C "\033[1;36m"
 #define LIGHT_GRAY_C "\033[0;37m"
 #define WHITE_C     "\033[1;37m"
-# define NC "\e[0m"
-# define RED "\e[0;31m"
-# define GRN "\e[0;32m"
-# define YEL "\e[0;33m"
-# define MAG "\e[0;35m"
-# define CYN "\e[0;36m"
-# define REDB "\e[41m"
 
-class WrongAnimal
+class AAnimal
 {
 	public:
-		WrongAnimal();
-		WrongAnimal(WrongAnimal &src);
-		virtual ~WrongAnimal();
-		WrongAnimal &operator=(const WrongAnimal &rhs);
+		AAnimal();
+		AAnimal(AAnimal &src);
+		virtual ~AAnimal();
+		AAnimal &operator=(const AAnimal &rhs);
 		std::string getType() const;
 		// virtual const std::string &getType() const;
-		void makeSound() const;
+		virtual void makeSound() const = 0;
 	protected:
 		std::string _type;
 };

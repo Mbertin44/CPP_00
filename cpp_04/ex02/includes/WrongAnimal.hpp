@@ -6,7 +6,7 @@
 /*   By: mbertin <mbertin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 12:08:42 by mbertin           #+#    #+#             */
-/*   Updated: 2023/05/15 11:19:57 by mbertin          ###   ########.fr       */
+/*   Updated: 2023/05/11 15:21:54 by mbertin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ class WrongAnimal
 		WrongAnimal &operator=(const WrongAnimal &rhs);
 		std::string getType() const;
 		// virtual const std::string &getType() const;
-		void makeSound() const;
+		virtual void makeSound() const;
 	protected:
 		std::string _type;
 };
