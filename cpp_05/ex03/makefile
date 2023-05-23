@@ -1,0 +1,66 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: mbertin <mbertin@student.42.fr>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/04/11 13:47:48 by mbertin           #+#    #+#              #
+#    Updated: 2023/05/19 14:39:33 by mbertin          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+#------------------------------------------------------------------------------#
+#								   GENERAL									   #
+#------------------------------------------------------------------------------#
+NAME = Form
+
+CC = c++
+CFLAGS = -g -Wall -Werror -Wextra -std=c++98
+RM = rm -rf
+
+#------------------------------------------------------------------------------#
+#								   LIBRARIES								   #
+#------------------------------------------------------------------------------#
+
+
+#------------------------------------------------------------------------------#
+#									SOURCES									   #
+#------------------------------------------------------------------------------#
+HEADER =	includes/Bureaucrat.hpp \
+			includes/GradeTooLowException.hpp \
+			includes/GradeTooHighException.hpp
+D_SRC = src/
+D_OBJ = obj/
+OBJS = $(patsubst $(D_SRC)%.cpp,$(D_OBJ)%.o,$(SRCS))
+SRCS =	src/main.cpp \
+		src/Bureaucrat.cpp \
+		src/AForm.cpp \
+		src/ShrubberyCreationForm.cpp \
+		src/RobotomyRequestForm.cpp \
+		src/PresidentialPardonForm.cpp
+
+#------------------------------------------------------------------------------#
+#									 RULES									   #
+#------------------------------------------------------------------------------#
+
+all:	 $(NAME)
+
+$(NAME):	$(D_OBJ) $(OBJS)
+	@$(CC) $(CFLAGS) $(OBJS) -o $@
+
+$(D_OBJ):
+	@mkdir -p $(D_OBJ)
+
+$(OBJS): $(D_OBJ)%.o : $(D_SRC)%.cpp $(HEADER)
+		@$(CC) $(CFLAGS) -c $< -o $@
+
+clean:
+	@$(RM) $(D_OBJ)
+
+fclean:	clean
+	@$(RM) $(NAME) $(NAME_BONUS)
+
+re:	fclean all
+
+.PHONY: all clean fclean lclean re
