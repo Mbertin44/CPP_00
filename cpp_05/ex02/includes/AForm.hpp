@@ -17,7 +17,7 @@ class AForm
 		int  				getGradeExec() const;
 		bool  				getSigned() const;
 		void				beSigned(Bureaucrat &src);
-		void				virtual execute(const Bureaucrat &executor) = 0;
+		void				virtual execute(const Bureaucrat &executor) const = 0;
 	private:
 		const 		std::string _name;
 		bool 		_signed;

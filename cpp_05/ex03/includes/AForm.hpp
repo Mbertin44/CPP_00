@@ -10,7 +10,7 @@ class AForm
 	public:
 		AForm(std::string name, int grade_sign, int grade_exec);
 		AForm(const AForm &src);
-		~AForm();
+		virtual ~AForm();
 		AForm 				&operator=(const AForm &rhs);
 		const std::string	getName() const;
 		int  				getGradeSign() const;

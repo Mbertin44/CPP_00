@@ -64,6 +64,12 @@ void				Bureaucrat::signForm(AForm &src)
 		std::cout << RED_C << this->_name << " could't sign " << src.getName() << " because he's grade is too low to sign" WHITE_C << std::endl;
 }
 
+void				Bureaucrat::executeForm(AForm const &form)
+{
+	form.execute(*this);
+}
+
+
 std::ostream		&operator<<(std::ostream& out_stream, const Bureaucrat &src)
 {
 	return (out_stream << src.getName() << " bureaucrat grade " << src.getGrade());
