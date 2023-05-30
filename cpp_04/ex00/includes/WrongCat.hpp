@@ -3,6 +3,10 @@
 
 #include "WrongAnimal.hpp"
 
+ /*
+	Vue que la fonction makesound dans WrongAnimal n'est pas virtual, WrongCat
+	ne passera pas par sa propre definition de makesound
+ */
 class WrongCat : public WrongAnimal
 {
 	public:

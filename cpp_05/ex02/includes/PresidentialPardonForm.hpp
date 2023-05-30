@@ -13,7 +13,7 @@ class PresidentialPardonForm : public AForm
 		PresidentialPardonForm(const PresidentialPardonForm &src);
 		~PresidentialPardonForm();
 		PresidentialPardonForm	&operator=(const PresidentialPardonForm &rhs);
-		void					execute(const Bureaucrat &executor);
+		void					execute(const Bureaucrat &executor) const;
 };
 
 #endif // PRESIDENTIALPARDONFORM_HPP

@@ -13,7 +13,7 @@ class RobotomyRequestForm : public AForm
 		RobotomyRequestForm(const RobotomyRequestForm &src);
 		~RobotomyRequestForm();
 		RobotomyRequestForm	&operator=(const RobotomyRequestForm &rhs);
-		void					execute(const Bureaucrat &executor);
+		void					execute(const Bureaucrat &executor) const;
 };
 
 #endif // ROBOTOMYREQUESTFORM_HPP

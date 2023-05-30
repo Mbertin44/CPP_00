@@ -30,10 +30,10 @@ Cat &Cat::operator=(const Cat &rhs)
 	return (*this);
 }
 
-// const std::string &Cat::getType () const
-// {
-// 	return (this->_type);
-// }
+Brain *Cat::getBrain()
+{
+	return (this->_brain);
+}
 
 void Cat::makeSound() const
 {

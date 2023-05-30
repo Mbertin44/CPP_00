@@ -22,7 +22,7 @@ PresidentialPardonForm	&PresidentialPardonForm::operator=(const PresidentialPard
 	return (*this);
 }
 
-void					PresidentialPardonForm::execute(const Bureaucrat &executor)
+void					PresidentialPardonForm::execute(const Bureaucrat &executor) const
 {
 	if (this->getSigned() == false)
 		throw UnsignedForm();

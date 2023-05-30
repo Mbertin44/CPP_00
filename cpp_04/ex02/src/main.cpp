@@ -6,7 +6,7 @@
 /*   By: mbertin <mbertin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 14:01:38 by mbertin           #+#    #+#             */
-/*   Updated: 2023/05/15 11:32:59 by mbertin          ###   ########.fr       */
+/*   Updated: 2023/05/26 09:58:22 by mbertin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 int main()
 {
 	const AAnimal *animals[10];
-	//const AAnimal animal = AAnimal(); Ne compile pas car la classe est abstraite
+	// const AAnimal animal = AAnimal(); //Ne compile pas car la classe est abstraite
 	for (size_t i = 0; i < 5; i++)
 	{
 		animals[i] = new Dog();

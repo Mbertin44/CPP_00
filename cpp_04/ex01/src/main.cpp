@@ -6,7 +6,7 @@
 /*   By: mbertin <mbertin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 14:01:38 by mbertin           #+#    #+#             */
-/*   Updated: 2023/05/12 11:18:24 by mbertin          ###   ########.fr       */
+/*   Updated: 2023/05/26 09:59:17 by mbertin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,23 @@ int main()
 	std::cout << test4.getBrain() << std::endl;
 	std::cout << test5.getBrain() << std::endl;
 	std::cout << test6.getBrain() << std::endl;
+
+	std::cout << "Cat test" << std::endl;
+	Cat* test7 = new Cat();
+	Cat* test8 = new Cat(*test7);
+	Cat* test9 = test7; //assignation de l'adresse. Je ne passe pas par l'overload operator =
+	std::cout << test7->getBrain() << std::endl;
+	std::cout << test8->getBrain() << std::endl;
+	std::cout << test9->getBrain() << std::endl;
+	delete test7;
+	delete test8;
+	std::cout << std::endl << std::endl;
+
+	Cat test10 = Cat();
+	Cat test11 = Cat(test10);
+	Cat test12 = test10;//Je passe par l'overload operator
+	std::cout << test10.getBrain() << std::endl;
+	std::cout << test11.getBrain() << std::endl;
+	std::cout << test12.getBrain() << std::endl;
 	return 0;
 }

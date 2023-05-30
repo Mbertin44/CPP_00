@@ -24,11 +24,6 @@ WrongCat &WrongCat::operator=(const WrongCat &rhs)
 	return (*this);
 }
 
-// const std::string &WrongCat::getType () const
-// {
-// 	return (this->_type);
-// }
-
 void WrongCat::makeSound() const
 {
 	std::cout << PURPLE_C "WRONG MIIIIIIIIIIAAAAAAAAOOOOOOOOUUUUUUUU ..." WHITE_C << std::endl;

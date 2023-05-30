@@ -6,7 +6,7 @@
 /*   By: mbertin <mbertin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 14:25:09 by mbertin           #+#    #+#             */
-/*   Updated: 2023/05/12 09:16:06 by mbertin          ###   ########.fr       */
+/*   Updated: 2023/05/26 10:00:20 by mbertin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ class Cat : public Animal
 		Cat(const Cat &src);
 		~Cat();
 		Cat &operator=(const Cat &src);
-		// const std::string &getType () const;
+		Brain *getBrain();
 		void makeSound() const;
 	private:
 		Brain *_brain;
