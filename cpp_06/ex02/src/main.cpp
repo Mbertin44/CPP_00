@@ -58,46 +58,53 @@ Base *generate(void)
 
 void identify(Base* p)
 {
+	std::cout << WHITE_C "Pointer identify test ..." << std::endl;
 	if(dynamic_cast<A*>(p))
-		std::cout << "p is a class A at the origin" << std::endl;
+		std::cout << GREEN_C "p is a class A at the origin" WHITE_C << std::endl;
 	else if(dynamic_cast<B*>(p))
-		std::cout << "p is a class B at the origin" << std::endl;
+		std::cout << GREEN_C "p is a class B at the origin" WHITE_C << std::endl;
 	else if(dynamic_cast<C*>(p))
-		std::cout << "p is a class C at the origin" << std::endl;
+		std::cout << GREEN_C "p is a class C at the origin" WHITE_C << std::endl;
 }
 
 /*
-	Je ne peux pas faire le même genre de cast que quand le parametre p est un
+	Je ne peux pas faire le même genre de gestion d'erreur que quand le parametre p est un
 	pointeur car dans le cas ou le dynamic_cast ne fonctionne pas il renverra
 	NULL. SAUF QUE, contrairement à un pointeur, une référence ne peut pas être
-	NULL, donc il m'est impossible d'essayer d'effectuer un dynamic_cast avec
-	une référence.
+	NULL. Donc si le cast échoue, dynamic_cast lève une exception au lieu de retourner une valeur null. Donc il m'est impossible de faire une comparaison if comme if(ma_conversion == NULL). Je dois vraiment passer par un try and catch.
 */
 void identify(Base& p)
 {
-	A convertA;
-	B convertB;
-	C convertC;
-	convertA = dynamic_cast<A&>(p);
-	convertB = dynamic_cast<B&>(p);
-	convertC = dynamic_cast<C&>(p);
-
-	if (dynamic_cast<A&>(p))
+	std::cout << "Reference identify test ..." << std::endl;
+	try
 	{
-
+		A convert = dynamic_cast<A&>(p);
+		std::cout << GREEN_C "p is a class A at the origin" WHITE_C << std::endl;
 	}
-
+	catch (std::bad_cast &e){}
+	catch (...){}
+	try
+	{
+		B convert = dynamic_cast<B&>(p);
+		std::cout << GREEN_C "p is a class B at the origin" WHITE_C << std::endl;
+	}
+	catch (std::bad_cast &e){}
+	catch (...){}
+	try
+	{
+		C convert = dynamic_cast<C&>(p);
+		std::cout << GREEN_C "p is a class C at the origin" WHITE_C << std::endl;
+	}
+	catch (std::bad_cast &e){}
+	catch (...){}
 }
 
-int main() {
-	t_data *data = new t_data;
-	data->value = 53;
-	std::cout << BLUE_C "data adress: " << data << " value = " << data->value << WHITE_C << std::endl;
-	uintptr_t convert = serialize(data);
-	//std::cout << BLUE_C "convert adress: " << convert << " value = " << convert.value << WHITE_C << std::endl;  //Ne fonctionnera pas car convert n'est plus une structure
-	std::cout << PINK_C "convert adress: " << convert << WHITE_C << std::endl;
-	data = deserialize(convert);
-	std::cout << BLUE_C "data adress: " << data << " value = " << data->value << WHITE_C << std::endl;
-	delete data;
-	return 0;
+int main(){
+	Base *test1 = generate();
+	Base *test2 = generate();
+
+	identify(test1); // Je donne le pointeur donc ca appel la fonction qui prend un pointeur
+	identify(*test2); // Vue que je donne la valeur pointé, ca appel la fonction qui prend une référence
+	delete test1;
+	delete test2;
 }
