@@ -66,11 +66,27 @@ void identify(Base* p)
 		std::cout << "p is a class C at the origin" << std::endl;
 }
 
+/*
+	Je ne peux pas faire le même genre de cast que quand le parametre p est un
+	pointeur car dans le cas ou le dynamic_cast ne fonctionne pas il renverra
+	NULL. SAUF QUE, contrairement à un pointeur, une référence ne peut pas être
+	NULL, donc il m'est impossible d'essayer d'effectuer un dynamic_cast avec
+	une référence.
+*/
 void identify(Base& p)
 {
-	A convert;
-	convert = dynamic_cast<A&>(p);
+	A convertA;
+	B convertB;
+	C convertC;
+	convertA = dynamic_cast<A&>(p);
+	convertB = dynamic_cast<B&>(p);
+	convertC = dynamic_cast<C&>(p);
+
 	if (dynamic_cast<A&>(p))
+	{
+
+	}
+
 }
 
 int main() {
