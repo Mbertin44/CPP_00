@@ -1,45 +1,62 @@
-#include "Array.class.tpp"
+#ifndef ARRAY_HPP
+# define ARRAY_HPP
 
-// template <typename T>
-Array::Array()
-{
-	this->_array = new _array;
-}
+#include <string>
+#include <iostream>
+#include <exception>
 
-// template <typename T>
-Array::Array(unsigned int &n)
-{
-	this->_array = new _array[n];
-}
-
-
-// template <typename T>
-Array::Array(const Array &src)
-{
-	this = src;
-}
-
-// template <typename T>
-const size_t Array::size() const{
-	size_t size = 0;
-	while (this->_array[size])
-		++size;
-	return (size);
-}
+#define BLACK_C     "\033[0;30m"
+#define DARK_GRAY_C "\033[1;30m"
+#define RED_C       "\033[0;31m"
+#define LIGHT_RED_C "\033[1;31m"
+#define GREEN_C     "\033[0;32m"
+#define LIGHT_GREEN_C "\033[1;32m"
+#define BROWN_C     "\033[0;33m"
+#define YELLOW_C    "\033[1;33m"
+#define BLUE_C      "\033[0;34m"
+#define LIGHT_BLUE_C "\033[1;34m"
+#define PURPLE_C    "\033[0;35m"
+#define PINK_C      "\033[1;35m"
+#define CYAN_C      "\033[0;36m"
+#define LIGHT_CYAN_C "\033[1;36m"
+#define LIGHT_GRAY_C "\033[0;37m"
+#define WHITE_C     "\033[1;37m"
 
 template <typename T>
-T Array::operator[](size_t index) const
+class Array
 {
-	if (index > size())
-		throw what.e("Array size exceeded\n");
-	return (this->_array[index]);
-}
+	public:
+		Array();
+		Array(unsigned int n);
+		Array(const Array &src);
+		~Array();
+		Array operator=(Array const &rhs);
+		T &operator[](size_t index);
+		unsigned int size() const;
+		class ArraySizeException : public std::exception
+		{
+		public:
+			const char* what() const throw()
+			{
+				return ("Array size exceeded");
+			}
+		};
+	private:
+		unsigned int	_size;
+		T				*_array;
+};
 
-// template <typename T>
-Array Array::operator=(Array const &rhs) const
-{
-	this->_array = new rhs._array[size()];
-	for (size_t i = 0; i < size(); i++)
-		this->_array[i] = rhs._array[i];
-	return (*this);
-}
+/*
+	Pourquoi le include est à la fin ?
+
+	Un fichier .tpp est différent d'un .cpp même si son contenu est très similaire.
+	En fait un fichier tpp est une exention de mon template .hpp. Par exemple
+	j'aurais pu mettre toute les definition de mes fonctions membres à la suite
+	du prototype de cette class. Si j'avais mis mon include en haut du fichier comme un .cpp
+	le compilateur aurait cherchez à lire mes definition avant mes protoype et
+	n'aurait donc pas compris au moment de la compilation.
+*/
+#include "../src/Array.class.tpp"
+
+
+#endif
