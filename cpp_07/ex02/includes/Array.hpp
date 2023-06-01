@@ -30,7 +30,7 @@ class Array
 		Array(unsigned int n);
 		Array(const Array &src);
 		~Array();
-		Array operator=(Array const &rhs);
+		Array &operator=(Array const &rhs);
 		T &operator[](size_t index);
 		unsigned int size() const;
 		class ArraySizeException : public std::exception
