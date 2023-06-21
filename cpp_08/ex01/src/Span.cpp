@@ -31,7 +31,17 @@ void	Span::addNumber(int value) {
 		_value.push_back(value);
 	else
 		MaxValue();
-} // ajoute un nombre a la Span
+}
+
+template<typename InputIterator>
+void Span::addNumbers(InputIterator first, InputIterator last)
+{
+    while (first != last)
+    {
+        addNumber(*first);
+        ++first;
+    }
+}
 
 int		Span::shortestSpan() {
     int smallestDistance = std::numeric_limits<int>::max();

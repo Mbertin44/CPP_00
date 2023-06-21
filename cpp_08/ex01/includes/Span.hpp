@@ -31,6 +31,8 @@ class Span
 		Span &operator=(Span &rhs);
 		~Span();
 		void	addNumber(int value); // ajoute un nombre a la Span
+		template<typename InputIterator>
+		void	addNumbers(InputIterator first, InputIterator last);
 		int		shortestSpan();
 		int		longestSpan();
 	private:
