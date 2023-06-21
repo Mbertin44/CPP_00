@@ -1,9 +1,9 @@
-#ifndef EASYFIND_HPP
-# define EASYFIND_HPP
+#ifndef SPAN_HPP
+# define SPAN_HPP
 
 #include <iostream>
 #include <exception>
-#include <array>
+#include <vector>
 
 #define BLACK_C     "\033[0;30m"
 #define DARK_GRAY_C "\033[1;30m"
@@ -22,22 +22,38 @@
 #define LIGHT_GRAY_C "\033[0;37m"
 #define WHITE_C     "\033[1;37m"
 
-class NotFind : std::exception
+class Span
+{
+	public:
+		Span();
+		Span(unsigned int max_value);
+		Span(Span &src);
+		Span &operator=(Span &rhs);
+		~Span();
+		void	addNumber(int value); // ajoute un nombre a la Span
+		int		shortestSpan();
+		int		longestSpan();
+	private:
+		unsigned int		_max_value;
+		std::vector<int>		_value;
+};
+
+class MaxValue : std::exception
 {
 	public:
 		const char *what() const throw()
 		{
-			return ("Occurence not find\n");
+			return ("The span is full\n");
 		}
 };
 
-template <typename T>
-typename T::iterator easyfind(T &container, int to_find)
+class NotEnoughtNumber : std::exception
 {
-	typename T::iterator i = std::find(container.begin(), container.end(), to_find);
-	if (i == container.end())
-		throw NotFind();
-	return (i);
-}
+	public:
+		const char *what() const throw()
+		{
+			return ("The span don't have enought number\n");
+		}
+};
 
 #endif
