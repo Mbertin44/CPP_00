@@ -1,49 +1,69 @@
-#include <string>
-#include <iostream>
-#include "../includes/whatever.tpp"
+#include "../includes/easyfind.hpp"
+#include <iterator>
 
-int main( void ) {
-	int a = 2;
-	int b = 3;
-	::swap( a, b );
-	std::cout << "a = " << a << ", b = " << b << std::endl;
-	std::cout << "min( a, b ) = " << ::min( a, b ) << std::endl;
-	std::cout << "max( a, b ) = " << ::max( a, b ) << std::endl;
-	std::string c = "chaine1";
-	std::string d = "chaine2";
-	::swap(c, d);
-	std::cout << "c = " << c << ", d = " << d << std::endl;
-	std::cout << "min( c, d ) = " << ::min( c, d ) << std::endl;
-	std::cout << "max( c, d ) = " << ::max( c, d ) << std::endl;
-	return 0;
+int main () {
+	std::cout <<GREEN_C "--------------- First test ---------------" WHITE_C << std::endl;
+	try{
+		std::cout << "Creating a array container of int with 5 value" << std::endl;
+		std::array<int, 5> int_container = {0, 123, 3, 4, 1};
+		std::cout << "Try to find occurence of value 1 inside the container" << std::endl;
+		std::array<int, 5>::iterator occurence = easyfind(int_container, 1);
+		std::cout << GREEN_C "Occurence have been found at index: " << std::distance(int_container.begin(), occurence) << WHITE_C << std::endl;
+	}
+	catch (const NotFind &e){
+		std::cerr << RED_C << e.what() << WHITE_C << std::endl;
+	}
+	catch (...){
+		std::cerr << RED_C << "Unexepted error ..." << WHITE_C << std::endl;
+	}
+
+	std::cout <<GREEN_C "\n--------------- Seconde test ---------------" WHITE_C << std::endl;
+	try{
+		std::cout << "Creating a array container of int with 5 value" << std::endl;
+		std::array<int, 5> int_container = {0, 1, 3, 1, 4};
+		std::cout << "Try to find occurence of value 1 inside the container" << std::endl;
+		std::array<int, 5>::iterator occurence = easyfind(int_container, 65);
+		std::cout << GREEN_C "Occurence have been found at index: " << std::distance(int_container.begin(), occurence) << WHITE_C << std::endl;
+	}
+	catch (const NotFind &e){
+		std::cerr << RED_C << e.what() << WHITE_C << std::endl;
+	}
+	catch (...){
+		std::cerr << RED_C << "Unexepted error ..." << WHITE_C << std::endl;
+	}
+	std::cout <<GREEN_C "\n--------------- Third test ---------------" WHITE_C << std::endl;
+	try{
+		std::cout << "Creating a array container of int with 5 value" << std::endl;
+		std::array<int, 5> int_container = {0, 4, 1, 4, 12};
+		std::cout << "Try to find occurence of value 1 inside the container" << std::endl;
+		std::array<int, 5>::iterator occurence = easyfind(int_container, 1);
+		std::cout << GREEN_C "Occurence have been found at index: " << std::distance(int_container.begin(), occurence) << WHITE_C << std::endl;
+	}
+	catch (const NotFind &e){
+		std::cerr << RED_C << e.what() << WHITE_C << std::endl;
+	}
+	catch (...){
+		std::cerr << RED_C << "Unexepted error ..." << WHITE_C << std::endl;
+	}
+	return (0);
+	// try{
+
+	// }
+	// catch (std::exception &e){
+	// 	std::cerr << RED_C << e.what() << WHITE_C << std::endl;
+	// }
+	// std::cout <<GREEN_C "--------------- Third test ---------------" WHITE_C << std::endl;
+	// try{
+
+	// }
+	// catch (std::exception &e){
+	// 	std::cerr << RED_C << e.what() << WHITE_C << std::endl;
+	// }
+	// std::cout <<GREEN_C "--------------- Fourth test ---------------" WHITE_C << std::endl;
+	// try{
+
+	// }
+	// catch (std::exception &e){
+	// 	std::cerr << RED_C << e.what() << WHITE_C << std::endl;
+	// }
 }
-
-
-// class Awesome
-// {
-//   public:
-//     Awesome(void) : _n(0) {}
-//     Awesome( int n ) : _n( n ) {}
-//     Awesome & operator= (Awesome & a) { _n = a._n; return *this; }
-//     bool operator==( Awesome const & rhs ) const { return (this->_n == rhs._n); }
-//     bool operator!=( Awesome const & rhs ) const{ return (this->_n != rhs._n); }
-//     bool operator>( Awesome const & rhs ) const { return (this->_n > rhs._n); }
-//     bool operator<( Awesome const & rhs ) const { return (this->_n < rhs._n); }
-//     bool operator>=( Awesome const & rhs ) const { return (this->_n >= rhs._n); }
-//     bool operator<=( Awesome const & rhs ) const { return (this->_n <= rhs._n); }
-//     int get_n() const { return _n; }
-//   private:
-//     int _n;
-// };
-// std::ostream & operator<<(std::ostream & o, const Awesome &a) { o << a.get_n(); return o; }
-
-// int main(void)
-// {
-// 	Awesome a(2), b(4);
-
-//         swap(a, b);
-//         std::cout << a << " " << b << std::endl;
-//         std::cout << max(a, b) << std::endl;
-//         std::cout << min(a, b) << std::endl;
-//         return (0);
-// }
