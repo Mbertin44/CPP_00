@@ -18,6 +18,12 @@
 #define LIGHT_GRAY_C "\033[0;37m"
 #define WHITE_C     "\033[1;37m"
 
+#define STR -1
+#define CHAR 0
+#define INT 1
+#define FLOAT 2
+#define DOUBLE 3
+
 void	impossible_input()
 {
 	std::cout << RED_C << "char: impossible" << WHITE_C << std::endl;
@@ -154,6 +160,45 @@ void	one_char_convert(std::string input)
 	}
 }
 
+bool	isStr(std::string input)
+{
+	int count = 0;
+	if (!isdigit(input[input.size() - 1]) && !isdigit(input[input.size() - 2]))
+		return false;
+	for (size_t i = 0; i < input.length(); i++)
+	{
+		if (i == 0 && input[i] == '-' && isdigit(input[i + 1]))
+			continue;
+		if (i == input.length() - 1 && input[i] == 'f')
+			continue;
+		if (!isdigit(input[i]) && count < 1 && input[i] == '.' && i > 0 && i != input.length() - 1)
+			count++;
+		else
+			return true;
+	}
+	return false;
+}
+
+int	findType(std::string input)
+{
+	if (input.size() == 1)
+	{
+		if (isdigit(input[0]))
+			return (INT);
+		else
+			return (CHAR);
+	}
+	if (isStr(input) == true)
+		return (STR);
+	else if (input.back() == 'f' && input[input.size() - 2] != '.')
+		return (FLOAT);
+	else if (input.find('.') != std::string::npos && input.back() != '.')
+		return (DOUBLE);
+	else
+		return (INT);
+}
+
+// tester +10 ou -10
 int	main(int argc, char **argv){
 	if (argc == 2){
 		std::string input(argv[1]);
@@ -168,5 +213,3 @@ int	main(int argc, char **argv){
 		std::cerr << RED_C "Bad argument" WHITE_C << std::endl;
 	}
 }
-
-// tester +10 ou -10
