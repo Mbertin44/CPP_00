@@ -75,3 +75,13 @@ int		Span::longestSpan() {
     }
     return (biggestDistance);
 }
+
+void	Span::fillSpan(std::vector<int> &vec)
+{
+	if (vec.size() < this->_max_value - this->_value.size()) {
+		this->_value.insert(this->_value.end(), vec.begin(), vec.end());
+		std::cout << GREEN_C "The span is now fill" WHITE_C << std::endl;
+	}
+	else
+		std::cout << RED_C "Impossible to fill the span. The span will exceed it's limit" WHITE_C << std::endl;
+}
