@@ -35,6 +35,7 @@ class Span
 		void	addNumbers(InputIterator first, InputIterator last);
 		int		shortestSpan();
 		int		longestSpan();
+		void	fillSpan(std::vector<int> &vec);
 	private:
 		unsigned int		_max_value;
 		std::vector<int>		_value;
