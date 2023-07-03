@@ -25,7 +25,7 @@ void	print(T const &value)
 }
 
 template <typename T>
-void	iter(T *array, size_t size_array, void (*whatever)(const T&))
+void	iter(T *array, size_t size_array, void (*whatever)(const T &param))
 {
 	for (size_t i = 0; i < size_array; ++i)
 		whatever(array[i]);
