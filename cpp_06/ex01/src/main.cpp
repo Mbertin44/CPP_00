@@ -45,7 +45,7 @@ int main() {
 	data->value = 53;
 	std::cout << BLUE_C "data adress: " << data << " value = " << data->value << WHITE_C << std::endl;
 	uintptr_t convert = serialize(data);
-	//std::cout << BLUE_C "convert adress: " << convert << " value = " << convert.value << WHITE_C << std::endl;  //Ne fonctionnera pas car convert n'est plus une structure
+	// std::cout << BLUE_C "convert adress: " << convert << " value = " << convert.value << WHITE_C << std::endl;  //Ne fonctionnera pas car convert n'est plus une structure
 	std::cout << PINK_C "convert adress: " << convert << WHITE_C << std::endl;
 	data = deserialize(convert);
 	std::cout << BLUE_C "data adress: " << data << " value = " << data->value << WHITE_C << std::endl;
