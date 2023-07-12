@@ -22,6 +22,27 @@ int main()
 	std::cout << *it << std::endl;
 	++it;
 	}
+	std::cout << GREEN_C "\nDEUXIEME TEST AVEC UN CONTAINER LIST\n" WHITE_C << std::endl;
 	std::stack<int> s(mstack);
+	std::list<int> list;
+	list.push_back(5);
+	list.push_back(17);
+	std::cout << list.back() << std::endl;
+	list.pop_back();
+	std::cout << list.size() << std::endl;
+	list.push_back(3);
+	list.push_back(5);
+	list.push_back(737);
+	//[...]
+	list.push_back(0);
+	std::list<int>::iterator it2 = list.begin();
+	std::list<int>::iterator ite2 = list.end();
+	++it2;
+	--it2;
+	while (it2 != ite2)
+	{
+	std::cout << *it2 << std::endl;
+	++it2;
+	}
 	return 0;
 }
