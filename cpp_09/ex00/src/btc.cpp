@@ -22,7 +22,7 @@ void	btc::checkArgc(int argc)
 {
 	if (argc != 2)
 	{
-		std::cerr << RED_C "Bad argument" WHITE_C << std::endl;
+		std::cerr << RED_C "Bad argument" NC << std::endl;
 		exit(EXIT_FAILURE);
 	}
 }
@@ -32,7 +32,7 @@ void	btc::checkDataCsv()
 	this->m_data.open("data.csv");
 	if (this->m_data.is_open() == false)
 	{
-		std::cerr << RED_C "Fail to open data.csv" WHITE_C << std::endl;
+		std::cerr << RED_C "Fail to open data.csv" NC << std::endl;
 		exit(EXIT_FAILURE);
 	}
 }
@@ -42,7 +42,7 @@ void	btc::checkInput(char *input)
 	this->m_input.open(input);
 	if (this->m_input.is_open() == false)
 	{
-		std::cerr << RED_C "Fail to open the input" WHITE_C << std::endl;
+		std::cerr << RED_C "Fail to open the input" NC << std::endl;
 		exit(EXIT_FAILURE);
 	}
 }
@@ -59,7 +59,8 @@ void	btc::dataStorage()
 		size_t  split = line.find(',');
 		std::string date = line.substr(0, split);
 		dashParsing(date);
-		dateParsing(date);
+		if (dateParsing(date) == false)
+			exit(EXIT_FAILURE);
 		value = valueParsing(line.substr(split + 1));
 		intDate = dateToInt(date);
 		m_dataBtc[intDate] = value;
@@ -75,21 +76,30 @@ void	btc::inputProcessing()
 	std::getline(m_input, line);
 	while (getline(m_input, line))
 	{
-		pipeParsing(line);
-		size_t  split = line.find('|');
-		std::string date = line.substr(0, split - 1);
-		dashParsing(date);
-		dateParsing(date);
-		value = valueParsing(line.substr(split + 2));
-		intDate = dateToInt(date);
-		// std::cout << intDate << " " << value << std::endl;
-		for (std::map<int, float>::reverse_iterator it = m_dataBtc.rbegin(); it != m_dataBtc.rend(); it++)
+		if (pipeParsing(line) == true)
 		{
-			if (it->first <= intDate)
+			size_t  split = line.find('|');
+			std::string date = line.substr(0, split - 1);
+			dashParsing(date);
+			if (dateParsing(date) == true)
 			{
-				std::cout << it->first << " " << it->second << std::endl;
-				std::cout << intDate << std::endl;
-				break;
+				value = valueParsing(line.substr(split + 2));
+				if (std::stod(line.substr(split + 2)) < 0)
+					std::cerr << RED_C "Error: not a positive number." NC << std::endl;
+				else if (std::stod(line.substr(split + 2)) > 1000)
+					std::cerr << RED_C "Error: too large a number." NC << std::endl;
+				else
+				{
+					intDate = dateToInt(date);
+					for (std::map<int, float>::reverse_iterator it = m_dataBtc.rbegin(); it != m_dataBtc.rend(); it++)
+					{
+						if (it->first <= intDate)
+						{
+							std::cout << date << " => " << value << " = " << value * it->second << std::endl;
+							break;
+						}
+					}
+				}
 			}
 		}
 	}
@@ -99,39 +109,41 @@ void	btc::commaParsing(std::string line)
 {
 	if (line.find(',') == std::string::npos)
 		{
-			std::cerr << RED_C "Bad format in data.csv, comma is missing" WHITE_C << std::endl;
+			std::cerr << RED_C "Bad format in data.csv, comma is missing" NC << std::endl;
 			exit(EXIT_FAILURE);
 		}
 }
 
-void	btc::pipeParsing(std::string line)
+bool	btc::pipeParsing(std::string line)
 {
 	if (line.find('|') == std::string::npos)
-		{
-			std::cerr << RED_C "Bad format in input file, pipe is missing" WHITE_C << std::endl;
-			exit(EXIT_FAILURE);
-		}
+	{
+		std::cerr << RED_C "Error: bad input => " << line << NC << std::endl;
+		return (false);
+	}
+	return (true);
 }
 
 void	btc::dashParsing(std::string date)
 {
 	if (date.at(4) != '-' || date.at(7) != '-')
 	{
-		std::cerr << RED_C "Bad format, dash is not at the right place" WHITE_C << std::endl;
+		std::cerr << RED_C "Bad format, dash is not at the right place" NC << std::endl;
 		exit(EXIT_FAILURE);
 	}
 }
 
-void	btc::dateParsing(std::string date)
+bool	btc::dateParsing(std::string date)
 {
 	m_valid_date.clear();
 	m_valid_date.str(date);
 	m_valid_date >> std::get_time(&m_time, "%Y-%m-%d");
 	if (m_valid_date.fail())
 	{
-		std::cerr << RED_C "Bad date format" WHITE_C << std::endl;
-		exit(EXIT_FAILURE);
+		std::cerr << RED_C "Bad date format " << date << NC << std::endl;
+		return(false);
 	}
+	return (true);
 }
 
 float	btc::valueParsing(std::string stringValue)
@@ -141,9 +153,9 @@ float	btc::valueParsing(std::string stringValue)
 		float floatValue = std::stof(stringValue);
 		return (floatValue);
 	}
-	catch (std::invalid_argument())
+	catch (std::invalid_argument)
 	{
-		std::cerr << RED_C "Bad value format" WHITE_C << std::endl;
+		std::cerr << RED_C "Bad value format" NC << std::endl;
 		exit(EXIT_FAILURE);
 	}
 }

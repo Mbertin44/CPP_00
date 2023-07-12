@@ -22,6 +22,7 @@
 #define LIGHT_CYAN_C "\033[1;36m"
 #define LIGHT_GRAY_C "\033[0;37m"
 #define WHITE_C     "\033[1;37m"
+#define NC "\e[0m"
 
 class btc
 {
@@ -36,9 +37,9 @@ class btc
 		void	dataStorage();
 		void	inputProcessing();
 		void	commaParsing(std::string line);
-		void	pipeParsing(std::string line);
+		bool	pipeParsing(std::string line);
 		void	dashParsing(std::string date);
-		void	dateParsing(std::string date);
+		bool	dateParsing(std::string date);
 		float	valueParsing(std::string date);
 		int		dateToInt(std::string date);
 	private:

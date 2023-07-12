@@ -3,7 +3,6 @@
 int main(int argc, char *argv[])
 {
 	btc btcData;
-	std::cout << std::setprecision(2) << std::fixed; // Je determine combien de chiffre je veux apres la virgule je veux afficher
 	btcData.checkArgc(argc);
 	btcData.checkDataCsv();
 	btcData.checkInput(argv[1]);
