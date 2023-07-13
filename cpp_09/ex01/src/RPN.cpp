@@ -55,7 +55,7 @@ void	RPN::checkFormat()
 		{
 			tmpOperator++;
 			operatorCount++;
-			if (tmpOperator == tmpValue && valueCount != operatorCount + 1)
+			if (tmpOperator >= tmpValue && valueCount != operatorCount + 1)
 			{
 				std::cerr << RED_C "Error: Bad Format" NC << std::endl;
 				exit(EXIT_FAILURE);
@@ -65,7 +65,39 @@ void	RPN::checkFormat()
 	}
 	if (valueCount != operatorCount + 1)
 	{
-		std::cerr << RED_C "Error: Bad Format. To many operator" NC << std::endl;
+		std::cerr << RED_C "Error: Bad Format. Wrong amount of operator" NC << std::endl;
 		exit(EXIT_FAILURE);
 	}
+}
+
+void	RPN::process()
+{
+	for (size_t i = 0; i < input.size(); i++)
+	{
+		if (isdigit(input[i]))
+			stack.push(input[i] - '0');
+		else if (input[i] == '-' || input[i] == '*' || input[i] == '/' || input[i] == '+')
+		{
+			int lhs = stack.top();
+			stack.pop();
+			int rhs = stack.top();
+			stack.pop();
+			switch (input[i])
+			{
+				case '+' :
+					stack.push(lhs + rhs);
+					break;
+				case '-' :
+					stack.push(lhs - rhs);
+					break;
+				case '*' :
+					stack.push(lhs * rhs);
+					break;
+				case '/' :
+					stack.push(lhs / rhs);
+					break;
+			}
+		}
+	}
+	std::cout << stack.top() << std::endl;
 }

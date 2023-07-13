@@ -10,5 +10,8 @@ int main(int argc, char** argv)
 	RPN rpn(argv[1]);
 	rpn.checkWrongCharacter();
 	rpn.checkFormat();
+	rpn.process();
 	return 0;
 }
+
+// gerer si le calcul est x / 0

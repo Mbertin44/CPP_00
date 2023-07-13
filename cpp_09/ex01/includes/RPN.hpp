@@ -30,6 +30,7 @@ class RPN
 		~RPN();
 		void	checkWrongCharacter();
 		void	checkFormat();
+		void	process();
 	private:
 		std::stack<int> stack;
 		int				operatorCount;
