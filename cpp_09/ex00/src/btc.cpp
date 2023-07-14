@@ -64,7 +64,6 @@ void	btc::dataStorage()
 		value = valueParsing(line.substr(split + 1));
 		intDate = dateToInt(date);
 		m_dataBtc[intDate] = value;
-		// std::cout << intDate << " " << value << std::endl;
 	}
 }
 
