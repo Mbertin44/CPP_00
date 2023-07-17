@@ -32,7 +32,6 @@ void	RPN::checkWrongCharacter()
 	{
 		if (!isdigit(input[i]) && input[i] != '+' && input[i] != '-' && input[i] != '*' && input[i] != '/' && input[i] != ' ')
 		{
-			std::cout << input[i] << std::endl;
 			std::cerr << RED_C "Error: wrong character" NC << std::endl;
 			exit(EXIT_FAILURE);
 		}
@@ -47,12 +46,22 @@ void	RPN::checkFormat()
 	{
 		if (isdigit(input[i]))
 		{
+			if (i < input.size() - 1 && input[i + 1] != ' ')
+			{
+				std::cerr << RED_C "Error: Bad Format. Space is missing" NC << std::endl;
+				exit(EXIT_FAILURE);
+			}
 			tmpValue++;
 			valueCount++;
 			tmpOperator = 0;
 		}
 		else if (input[i] == '-' || input[i] == '*' || input[i] == '/' || input[i] == '+')
 		{
+			if (i < input.size() - 1 && input[i + 1] != ' ')
+			{
+				std::cerr << RED_C "Error: Bad Format. Space is missing" NC << std::endl;
+				exit(EXIT_FAILURE);
+			}
 			tmpOperator++;
 			operatorCount++;
 			if (tmpOperator >= tmpValue && valueCount != operatorCount + 1)
@@ -60,7 +69,8 @@ void	RPN::checkFormat()
 				std::cerr << RED_C "Error: Bad Format" NC << std::endl;
 				exit(EXIT_FAILURE);
 			}
-			tmpValue = 0;
+			if (i + 2 < input.size() - 1 && isdigit(input[i + 2]))
+				tmpValue = 0;
 		}
 	}
 	if (valueCount != operatorCount + 1)
@@ -78,22 +88,31 @@ void	RPN::process()
 			stack.push(input[i] - '0');
 		else if (input[i] == '-' || input[i] == '*' || input[i] == '/' || input[i] == '+')
 		{
-			int lhs = stack.top();
-			stack.pop();
 			int rhs = stack.top();
+			stack.pop();
+			int lhs = stack.top();
 			stack.pop();
 			switch (input[i])
 			{
 				case '+' :
+					// std::cout << lhs << " + " << rhs << " = " << lhs + rhs << std::endl;
 					stack.push(lhs + rhs);
 					break;
 				case '-' :
+					// std::cout << lhs << " - " << rhs << " = " << lhs - rhs << std::endl;
 					stack.push(lhs - rhs);
 					break;
 				case '*' :
+					// std::cout << lhs << " * " << rhs << " = " << lhs * rhs << std::endl;
 					stack.push(lhs * rhs);
 					break;
 				case '/' :
+					if (rhs == 0)
+					{
+						std::cerr << RED_C "Error: division by zero : " << lhs << " / " << rhs << NC << std::endl;
+						exit(EXIT_FAILURE);
+					}
+					// std::cout << lhs << " / " << rhs << " = " << lhs / rhs << std::endl;
 					stack.push(lhs / rhs);
 					break;
 			}
