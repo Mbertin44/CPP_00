@@ -3,6 +3,7 @@
 #include <string>
 #include <iostream>
 #include <list>
+#include <sys/time.h>
 #include <vector>
 
 #define BLACK_C     "\033[0;30m"
@@ -42,7 +43,15 @@ class PmergeMe
 		void				mergeInsertSublist(int start, int middle, int end);
 	private:
 		std::string input;
-        std::list<int> 		list;
+
         std::vector<int>	vector;
+		struct timeval		vectorStartTime;		
+		struct timeval		vectorEndTime;		
+		long long			vectorDuration;		
+        
+		std::list<int> 		list;
+		struct timeval		listStartTime;		
+		struct timeval		listEndTime;
+		long long			listDuration;		
 };
 

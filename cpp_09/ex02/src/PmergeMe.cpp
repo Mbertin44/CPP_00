@@ -57,6 +57,11 @@ void	PmergeMe::checkInvalidInput(char **input, int argc)
 		try 
 		{
 			int value = std::stoi(input[i]);
+			if (value < 0)
+			{
+        		std::cerr << RED_C "Error" NC << std::endl;
+        		exit (EXIT_FAILURE);
+    		}
 			list.push_back(value);
 			vector.push_back(value);
 		}
@@ -66,14 +71,12 @@ void	PmergeMe::checkInvalidInput(char **input, int argc)
 			exit(EXIT_FAILURE);
 		}
 	}
-	// std::cout << "list :" << std::endl;
-	// printList();
-	// std::cout << "vector :" << std::endl;
-	// printVector();
 }
 
 void	PmergeMe::subVector(int start, int end)
 {
+	if (start == 0 && end == static_cast<int>(vector.size() - 1))
+		gettimeofday(&vectorStartTime, nullptr);
 	int middle = (start + end) / 2; // Je determine le milieu de ma liste
 
 	if (start >= end) // Si il me reste juste une seul valeur
@@ -81,6 +84,14 @@ void	PmergeMe::subVector(int start, int end)
 	subVector(start, middle); //Je sous divise du debut jusqu'au milieu 
 	subVector(middle + 1, end); //Je sous divise du milieu + 1 jusqu'a la fin
 	mergeInsertSubvector(start, middle, end);//J'appel ma fonction de tri
+	if (start == 0 && end == static_cast<int>(vector.size() - 1))
+	{
+		gettimeofday(&vectorEndTime, nullptr);
+		vectorDuration = (vectorEndTime.tv_sec - vectorStartTime.tv_sec) * 1000000LL + (vectorEndTime.tv_usec - vectorStartTime.tv_usec);
+		std::cout << "After: ";
+    	printVector();
+		std::cout << "Time to process a range of " << vector.size() << " elements with std::vector : " << vectorDuration << " us" << std::endl;
+	}
 }
 
 void	PmergeMe::mergeInsertSubvector(int start, int middle, int end)
@@ -132,6 +143,8 @@ void	PmergeMe::mergeInsertSubvector(int start, int middle, int end)
 
 void	PmergeMe::subList(int start, int end)
 {
+	if (start == 0 && end == static_cast<int>(vector.size() - 1))
+		gettimeofday(&listStartTime, nullptr);
 	int middle = (start + end) / 2; // Je determine le milieu de ma liste
 
 	if (start >= end) // Si il me reste juste une seul valeur
@@ -139,6 +152,12 @@ void	PmergeMe::subList(int start, int end)
 	subList(start, middle); //Je sous divise du debut jusqu'au milieu 
 	subList(middle + 1, end); //Je sous divise du milieu + 1 jusqu'a la fin
 	mergeInsertSublist(start, middle, end);//J'appel ma fonction de tri
+	if (start == 0 && end == static_cast<int>(vector.size() - 1))
+	{
+		gettimeofday(&listEndTime, nullptr);
+		listDuration = (listEndTime.tv_sec - listStartTime.tv_sec) * 1000000LL + (listEndTime.tv_usec - listStartTime.tv_usec);
+		std::cout << "Time to process a range of " << list.size() << " elements with std::list : " << listDuration << " us" << std::endl;
+	}
 }
 
 void	PmergeMe::mergeInsertSublist(int start, int middle, int end)
@@ -190,3 +209,4 @@ void	PmergeMe::mergeInsertSublist(int start, int middle, int end)
 		++itList;
 	}
 }
+
